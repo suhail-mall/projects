@@ -18,9 +18,6 @@ Should produce: distance distribution ~ r
 import numpy as np
 import matplotlib.pyplot as plt
 
-import os
-#os.chdir(r'\\icnas2.cc.ic.ac.uk\ssm2617\UNI\Year 2\Computing\project')
-os.chdir(r'C:\Users\suhai\Documents\UNI\Year 2\Computing\project')
 
 from nBall import *
 from tqdm import trange
