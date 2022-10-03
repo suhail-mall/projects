@@ -24,11 +24,6 @@ Core modules:
 	initBall
 	nBall
 
-old:
-old code that has been built upon and is no longer useful
-	nBall1
-	nBall2
-	twoBall
 
 testing:
 Probes used to measure thermodynamic properties of a simulation
