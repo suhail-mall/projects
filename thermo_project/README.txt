@@ -8,12 +8,12 @@ This project is designed to simulate a non-ideal gas using hard sphere balls.
 Project Structure:
 
 NOTE: >must have TQDM, NUMPY, SCIPY, SCIPY.OPTIMIZE, MATPLOTLIB.PYPLOT packages installed
-      > All these packages are installed on the computers in Blackett Laboratory computer suite but if not,
+      > All these packages are installed on the computers in Blackett Laboratory computer 	suite but if not,
 	they can be installed easily through Anaconda or using pip install.
         If don't want to use TQDM, comment out import line and change trange to range.
-      > os.chdir() lines in thermoCalc and distributionTest modules will need to be changed.
+      > os.chdir() lines in thermoCalc and distributionTest modules will need to be 	changed.
         File path should end in folder containing the modules initBall and nBall.
-      > spyder 'project' functionality not working with this project but does not affect code.
+      > spyder 'project' functionality not working with this project but does not affect 	code.
       
 
 To take data use modules within TESTING folder.
@@ -24,8 +24,7 @@ Core modules:
 	initBall
 	nBall
 
-
-testing:
+Testing:
 Probes used to measure thermodynamic properties of a simulation
 Runs experiments by initalising simulations with different initial parameters 
 	distributionTest
@@ -36,13 +35,13 @@ Runs experiments by initalising simulations with different initial parameters
 	presV
 	thermoCalc
 
-results:
+Results:
 Contains .png figures of plots of data
 Data also included for most experiments
 Naming convention inconsistent but semi-coherent
 Each file contains array of just one variable (not both variables in each experiment)
 
------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 Use and Examples:
 
 Initialising a Ball:
