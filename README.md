@@ -1,6 +1,6 @@
-### Projects 
+## Projects 
 
-A potfolio of the projects I have completed during my MSci in Theoretical Physics at Imperial College London.
+A potfolio of the projects I have completed during my MSci master's course in Theoretical Physics at Imperial College London.
 
 Each folder contains a README text file, the code and results for the project, and the accompanying project report. 
 
