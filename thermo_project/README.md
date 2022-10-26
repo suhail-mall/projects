@@ -97,7 +97,7 @@ NOTE:
 
 pN function takes parameters (cont,n,m,r,v_bottom,v_top), all defined above, e.g: 
 
-> a=pN(10.,100,1.,0.1,-10.,10.)
+> a = pN(10.,100,1.,0.1,-10.,10.)
 > plt.plot(a[0],a[1],'x')
 
 
