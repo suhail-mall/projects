@@ -1,7 +1,5 @@
 # Thermodynamics Project 
 
-
-
 Author:  
 Suhail Shoaib Mall  
 Physics Department, Imperial College London  
@@ -54,9 +52,9 @@ NOTE:
 ### __Initialising a Ball:__ ###
 * Initialise ball with parameters:
         
-	* m= mass of ball, float
+	* m = mass of ball, float
         
-        * r= radius of ball, float
+        * r = radius of ball, float
         
         * pos = position of ball; list of length 2, each element of type float
         
@@ -65,8 +63,8 @@ NOTE:
 * Can use collide() function as self.collide(other)
 * Takes other Ball as input, e.g:
 
-> b1=Ball(1.,0.1,[2.,0.],[-1.,0.])
-> b2=Ball(1.,0.1,[-2.,0.],[11.,0.])
+> b1 = Ball(1.,0.1,[2.,0.],[-1.,0.])  
+> b2 = Ball(1.,0.1,[-2.,0.],[11.,0.])  
 > b1.collide(b2)          
 
 
@@ -84,9 +82,9 @@ NOTE:
 
 * e.g. of initialisation and use:
 
-> s=Sim(10.)
-> s.generateBalls(100,1.,0.1,-10.,10.)
-> s.Run(2000,True)
+> s = Sim(10.)  
+> s.generateBalls(100,1.,0.1,-10.,10.)  
+> s.Run(2000,True)  
 
 
 ### __thermoCalc and distributionTest:__ ###
