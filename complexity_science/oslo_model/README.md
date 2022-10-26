@@ -1,16 +1,16 @@
-# Complexity Report 
+# Complexity Project 
 
 README for SSM2617, 01392009 Complexity Project
 
 Required non-standard packages:
-tqdm
-pickle 
+* tqdm
+* pickle 
 
 Python files to run (in code folder):
-oslo_range.py
-heights.py
-avalanches.py
-get_pickles.py
+* oslo_range.py
+* heights.py
+* avalanches.py
+* get_pickles.py
 
 ## Example Usage 
 
@@ -18,6 +18,7 @@ get_pickles.py
 * Simulations can be run manually through the oslo_range.py file:
 
 > s = OsloSim()
+
 > s.Trun(100000)
 
 * will initialise and run a simulation for 100000 timesteps
@@ -28,8 +29,9 @@ get_pickles.py
 * Functions 'FindSteady' and 'SmootH' were used to generate simulations and data, but these have been stored for ease of use.
 * Use GetParams() and GetSims() functions to retrieve data and simulations 
 
-* Typically run functions in order that htey are written with the output of one function as the input of the next
-* Example of run to generate all data given in file : > DistributionQuestions()
+* Typically run functions in order that they are written with the output of one function as the input of the next
+* Example of run to generate all data given in file :  
+> DistributionQuestions()
 
 
 ### __avalanches.py__ ###
