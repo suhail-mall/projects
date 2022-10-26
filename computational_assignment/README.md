@@ -1,7 +1,9 @@
-# Computaitonal Physics Assignment 
+# Computational Physics Assignment 
 
 Author: Suhail Shoaib Mall
+
 	Physics Department, Imperial College London
+
 	CID 01392009
 
 
