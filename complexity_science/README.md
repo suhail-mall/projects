@@ -1,8 +1,10 @@
 # Complexity Project 
 
-Author: Suhail Shoaib Mall
-	Physics Department, Imperial College London
-	CID 01392009
+
+Author:  
+Suhail Shoaib Mall  
+Physics Department, Imperial College London  
+CID 01392009  
 
 
 Required non-standard packages:

@@ -1,9 +1,11 @@
 # Thermodynamics Project 
 
 
-Author: Suhail Shoaib Mall
-	Physics Department, Imperial College London
-	CID 01392009
+
+Author:  
+Suhail Shoaib Mall  
+Physics Department, Imperial College London  
+CID 01392009  
 
 This project is designed to simulate a non-ideal gas using hard sphere balls.
 
