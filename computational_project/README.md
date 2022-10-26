@@ -80,8 +80,8 @@ The 3-parameter model was tested using Gradient Descemt and Quasi-Newton minimsa
 > [theta_min, m_min], [theta_tests, m_tests] = Univariate(guess_theta = [0.8,0.9,0.95],guess_m=[2e-3,2.5e-3,3e-3])  
 
 #### __Gradient Descent:__ ####
-> 2d: xmin_2d, xsteps_2d= GradDesc(f=NLL_2d, x=[0.8,3e-3], alpha=[1e-4,1e-9], eps=2*[1e-5])  
-> 3d: xmin_3d, xsteps_3d= GradDesc(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])  
+> xmin_2d, xsteps_2d= GradDesc(f=NLL_2d, x=[0.8,3e-3], alpha=[1e-4,1e-9], eps=2*[1e-5])  
+> xmin_3d, xsteps_3d= GradDesc(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])  
 
 #### __Quasi_Newton:__ ####
 > x_QN, G_QN, steps_QN = QN(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])  
