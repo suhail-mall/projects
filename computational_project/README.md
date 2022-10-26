@@ -72,19 +72,19 @@ The 3-parameter model was tested using Gradient Descemt and Quasi-Newton minimsa
 ### USAGE EXAMPLES 
 
 ####  __plots:__ ####
-* PlotOscProbE()  -- no output
-* Hists()  -- no output 
-* HeatMap()  -- outputs (fig,ax) so that user can draw minimiser steps on top of heatmap 
+> PlotOscProbE()  -- no output  
+> Hists()  -- no output  
+> HeatMap()  -- outputs (fig,ax) so that user can draw minimiser steps on top of heatmap  
 
 #### __Parabolic Approximation:__ ####
-* [theta_min, m_min], [theta_tests, m_tests] = Univariate(guess_theta = [0.8,0.9,0.95],guess_m=[2e-3,2.5e-3,3e-3])
+> [theta_min, m_min], [theta_tests, m_tests] = Univariate(guess_theta = [0.8,0.9,0.95],guess_m=[2e-3,2.5e-3,3e-3])  
 
 #### __Gradient Descent:__ ####
-* 2d: xmin_2d, xsteps_2d= GradDesc(f=NLL_2d, x=[0.8,3e-3], alpha=[1e-4,1e-9], eps=2*[1e-5])
-* 3d: xmin_3d, xsteps_3d= GradDesc(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])
+> 2d: xmin_2d, xsteps_2d= GradDesc(f=NLL_2d, x=[0.8,3e-3], alpha=[1e-4,1e-9], eps=2*[1e-5])  
+> 3d: xmin_3d, xsteps_3d= GradDesc(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])  
 
 #### __Quasi_Newton:__ ####
-* x_QN, G_QN, steps_QN = QN(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])
+> x_QN, G_QN, steps_QN = QN(f=NLL_3d, x=[0.86,2.88e-3,1.], alpha=[1e-4,1e-9, 1e-3], eps=3*[1e-5])  
 
 
 ### PROJECT QUESTIONS 
@@ -96,8 +96,8 @@ The 3-parameter model was tested using Gradient Descemt and Quasi-Newton minimsa
 * univariate_2d() -- runs the univariate minimiser 
 
 ##### __gradient_descent.py:__ #####
-* grad_min_2d() -- runs gradient descent minimiser for the 2d NLL 
-* grad_min_3d() -- runs gradient descent minimiser for the 3d NLL 
+* grad_min_2d() -- runs gradient descent minimiser for the 2d NLL  
+* grad_min_3d() -- runs gradient descent minimiser for the 3d NLL  
 
 ##### __quasi_newton.py:__ #####
 * qn_2d() -- runs quasi-Newton minimiser for 2d NLL. Also returns the final G matrix and calculates the Hessian so that these two can be compared. 
