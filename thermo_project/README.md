@@ -10,8 +10,14 @@ This project is designed to simulate a non-ideal gas using hard sphere balls.
 
 
 NOTE: 
-* must have TQDM, NUMPY, SCIPY, SCIPY.OPTIMIZE, MATPLOTLIB.PYPLOT packages installed
-* All these packages are installed on the computers in Blackett Laboratory computer suite but if not, they can be installed easily through Anaconda or using pip install. If don't want to use TQDM, comment out import line and change trange to range.
+* Must have following packages installed
+	* _tqdm_
+	* _numpy_ 
+	* _scipy_
+	* _scipy.optimise_
+	* _matplotlib.pyplot_
+
+* All of these packages are installed on the computers in Blackett Laboratory computer suite but if not, they can be installed easily through Anaconda or using pip install. If don't want to use TQDM, comment out import line and change trange to range.
       
 
 ## Project Structure:
@@ -20,8 +26,8 @@ NOTE:
 * To view simulation animation use nBall module.
 
 * Core modules:
-	> initBall
-	> nBall
+	* initBall
+	* nBall
 
 ### __Testing:__ ###
 * Probes used to measure thermodynamic properties of a simulation

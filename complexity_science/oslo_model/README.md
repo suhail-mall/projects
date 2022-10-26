@@ -21,7 +21,7 @@ Python files to run (in code folder):
 
 > s.Trun(100000)
 
-* will initialise and run a simulation for 100000 timesteps
+* Will initialise and run a simulation for 100000 timesteps
 
 
 ### __heights.py__ ###

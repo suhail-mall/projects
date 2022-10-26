@@ -36,7 +36,8 @@ ReadMe file for Computational Physics Assignment (Suhail Mall, ssm2617)
 * For array of (g*h) for arbitrary (t_max,m) use gh = conv(t_max,m)
 * This can be plotted against axis in t-domain:	
 > x = np.linspace(-t_max,3*t_max,N)
-> using plt.plot(x,gh)
+
+> plt.plot(x,gh)
 
 
 ### __Question 5 - Random Numbers (rand_no.py)__ ###
