@@ -1,6 +1,9 @@
 # Computaitonal Physics Assignment 
 
-ReadMe file for Computational Physics Assignment (Suhail Mall, ssm2617)
+Author: Suhail Shoaib Mall
+	Physics Department, Imperial College London
+	CID 01392009
+
 
 
 ### __Question 1 - Machine Accuracy (float.py):__ ###

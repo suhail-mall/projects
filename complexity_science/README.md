@@ -1,13 +1,16 @@
 # Complexity Project 
 
-README for SSM2617, 01392009 Complexity Project
+Author: Suhail Shoaib Mall
+	Physics Department, Imperial College London
+	CID 01392009
+
 
 Required non-standard packages:
 * tqdm
 * pickle 
 
 Python files to run (in code folder):
-* oslo_range.py
+* oslo_model.py
 * heights.py
 * avalanches.py
 * get_pickles.py
