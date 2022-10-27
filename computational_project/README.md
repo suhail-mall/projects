@@ -93,16 +93,14 @@ The 3-parameter model was tested using Gradient Descemt and Quasi-Newton minimsa
 * quasi_newton.py also has a function to compare the results for the gradient descent and QN minimisers.
 
 ##### __parabolic_approximation.py:__ #####
-* univariate_2d() -- runs the univariate minimiser 
+* *univariate_2d()* -- runs the univariate minimiser 
 
 ##### __gradient_descent.py:__ #####
-* grad_min_2d() -- runs gradient descent minimiser for the 2d NLL  
-* grad_min_3d() -- runs gradient descent minimiser for the 3d NLL  
+* *grad_min_2d()* -- runs gradient descent minimiser for the 2d NLL  
+* *grad_min_3d()* -- runs gradient descent minimiser for the 3d NLL  
 
 ##### __quasi_newton.py:__ #####
-* qn_2d() -- runs quasi-Newton minimiser for 2d NLL. Also returns the final G matrix and calculates the Hessian so that these two can be compared. 
-* qn_3d() -- runs quasi-Newton minimiser for 3d NLL. Also returns the final G matrix and calculates the Hessian so that these two can be compared. 
-* min_3d() -- runs gradient descent and QN minimisers and outputs the results to be compared.
-
-
+* *qn_2d()* -- runs quasi-Newton minimiser for 2d NLL. Also returns the final G matrix and calculates the Hessian so that these two can be compared. 
+* *qn_3d()* -- runs quasi-Newton minimiser for 3d NLL. Also returns the final G matrix and calculates the Hessian so that these two can be compared. 
+* *min_3d()* -- runs gradient descent and QN minimisers and outputs the results to be compared.
 
