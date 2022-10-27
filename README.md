@@ -25,7 +25,7 @@ Here is a brief overview and the aims of each project:
 * A project to simulate an ideal gas as a collection of hard spheres undergoing inelastic collisions. 
 * This was a large OOP project involving developing a simulation and probes to analyse the thermodynamic behaviours of the system. 
 
-#### **Complexity Science Project:** ####
+#### **Complexity Project:** ####
 * A project to simulate a pile of sand using hte Oslo Model. 
 * Used OOP to build model.
 * Increased efficiency of process by treating as a branching process rather than brute-forcing.
