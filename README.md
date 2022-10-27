@@ -28,5 +28,5 @@ Here is a brief overview and the aims of each project:
 #### **Complexity Project:** ####
 * A project to simulate a pile of sand using hte Oslo Model. 
 * Used OOP to build model.
-* Increased efficiency of process by treating as a branching process rather than brute-forcing.
+* Increased efficiency of process by treating it as a branching process rather than brute-forcing.
 * Analysed complex behaviours and statistics of system.
