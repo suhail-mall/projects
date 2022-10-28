@@ -23,7 +23,10 @@ Here is a brief overview and the aims of each project:
 
 * A project to develop and compare minimsation functions. 
 * These were used to minimise a cost function, as is typically done in Machine Learning projects. 
-* The algorithms developed included: univariate minimiser, gradient descent, and quasi-Newton descent.
+* The algorithms developed included:  
+	* Univariate minimiser  
+	* Gradient descent  
+	* Quasi-Newton method.  
 
 #### **Thermodynamics Project:** ####
 
