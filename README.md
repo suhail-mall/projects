@@ -11,7 +11,12 @@ Here is a brief overview and the aims of each project:
 
 #### **Computational Assignment**: ####
 
-* A project to code up several key fundamental algorithms, including: Crout matrix solver, cubic interpolator, and RNG for a general distribution. 
+* A project to code up several key fundamental algorithms, including:  
+	* Crout matrix solver  
+	* Linear and cubic interpolators  
+	* RNG for a general distribution  
+	* FFT for convolutions  
+ 
 * This demonstrates an ability to transfer a general mathematical algorithm to written code. 
 
 #### **Computational Project:** ####
