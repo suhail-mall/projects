@@ -162,12 +162,13 @@ def Hessian(f,x,eps):
     n = len(x)
     H = np.zeros([n,n])
     for i in range(n):
-        for j in range(n): # Calculated on paper 
+        for j in range(i+1): # Calculated on paper 
             H[i,j] = 1/(4*eps[i]*eps[j]) \
                * (f(*(x+eps_mat[i]+eps_mat[j])) \
                -  f(*(x+eps_mat[i]-eps_mat[j])) \
                -  f(*(x-eps_mat[i]+eps_mat[j])) \
-               +  f(*(x-eps_mat[i]-eps_mat[j]))) 
+               +  f(*(x-eps_mat[i]-eps_mat[j])))
+    H = H + np.transpose(H) - np.diag(np.diag(H))
     return H
 
 def cov(H): 
