@@ -40,6 +40,12 @@ class Sim:
         clust_dist[clust_l] += 1 # If cluster contains final site
         return clust_dist / np.sum(clust_dist)
     
+    def theo_clust_dist(self, s):
+        if s == self.L:
+            return self.p **self.L /self.L
+        if s == self.L - 1: 
+            return 
+    
     
     
     
