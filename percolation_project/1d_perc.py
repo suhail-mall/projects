@@ -79,7 +79,7 @@ def nspl(s, p, L):
     s = int(s)
     L = int(L)
     if s == L:
-        return p **L /L
+        return p **L /L 
     if s == L - 1: 
         return (1-p) * p **(s-1)
     else: 
@@ -89,11 +89,12 @@ def nspl(s, p, L):
 #%% Testing 
 
 def test_dist(L = 2**10, reps = 2000):
+    # Count active sites and compare to sum of dist*cluster size 
     for i in range(reps): # Do by removing normalisation in final cluster_dist line 
         s = Sim(L)
         d = s.cluster_dist()
         # print(i, sum(s.sites), sum([j*d[j] for j in range(len(d))]))
-        print(i,  sum(s.sites) == sum([j*d[j] for j in range(len(d))]))
+        print(i,  sum(s.sites) == sum([j*d[j] for j in range(len(d))])) 
     
     
 
