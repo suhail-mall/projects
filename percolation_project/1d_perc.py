@@ -28,6 +28,8 @@ class Sim:
         clust_dist : array_like, 1_dimenstional, length Sim.L+1
             The normalised cluster distribution 
         '''
+        
+        # NEED TO IMPLMN PERIODIC BOUNDARY CONDNS  !!!!!!! Affects first and last cluster 
         clust_dist = np.zeros(self.L+1) # Largest possible cluster size is L, start counting at 0 to match indexing
         clust_l    = 0 # cluster length 
         
@@ -40,12 +42,25 @@ class Sim:
         clust_dist[clust_l] += 1 # If cluster contains final site
         return clust_dist / np.sum(clust_dist)
     
-    def theo_clust_dist(self, s):
-        if s == self.L:
-            return self.p **self.L /self.L
-        if s == self.L - 1: 
-            return 
     
     
     
     
+    
+def theo_nsp(s, p, L):
+    
+    if 0<=p<=1:
+        raise Exception ('Probability not in range [0,1]')
+    if 1<=s<=L:
+        raise Exception('Cluster size not in range [1,L]')
+    s = int(s)
+    L = int(L)
+    if s == L:
+        return p **L /L
+    if s == L - 1: 
+        return (1-p) * p **(s-1)
+    else: 
+        return (1-p)**2 * p**s 
+
+
+
