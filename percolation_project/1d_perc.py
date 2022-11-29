@@ -51,14 +51,30 @@ class Sim:
     
     
     
- #%% Theoretical Predcitions   
+ #%% Theoretical Predcitions and Plots 
     
     
-def theo_nsp(s, p, L):
-    
-    if 0<=p<=1:
+def nspl(s, p, L):
+    '''
+    > Calculated probability of a cluster of size s in a system of length L and 
+    activation probability p
+    > Denoted n(s,p,L)
+    Parameters
+    ----------
+    s : int, [1,L]
+        Size of cluster
+    p : float, [0,1]
+        Probability of each site being activated 
+    L : int
+        Length of system
+    Returns
+    -------
+    n : float
+        n(s,p,L)
+    '''
+    if not 0<=p<=1:
         raise Exception ('Probability not in range [0,1]')
-    if 1<=s<=L:
+    if not 1<=s<=L:
         raise Exception('Cluster size not in range [1,L]')
     s = int(s)
     L = int(L)
@@ -68,7 +84,6 @@ def theo_nsp(s, p, L):
         return (1-p) * p **(s-1)
     else: 
         return (1-p)**2 * p**s 
-
 
 
 #%% Testing 
