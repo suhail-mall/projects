@@ -20,7 +20,7 @@ class Sim:
     (n) Balls can then be generated with associated mass and radius. Velocity is random chosen using a normal distribution and position is systematic
     When the Run() method is called: next collision is found, time advanced to that point, collision carried out.
     Run() takes frame number (N) --> N collisions are carried out.
-    s.Run
+    
     Note that tqdm package must be installed 
     -------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -42,13 +42,14 @@ class Sim:
         total_time and total_mom are used to calculate pressure exerted on Container. Property of simulation so stored here.
         '''
         assert isinstance(rad,float)
-        self.container_rad=rad
-        self.container = Container(self.container_rad)#initialise a container associated with simulation
-        self.balls = [] # initalise, will hold all balls in Simulation object
-        self.num_balls=0
-        self.ball_mass=0.
-        self.total_time=0.
-        self.total_mom=0.
+        self.container_rad          = rad
+        self.container              = Ball(1E12,rad,[0.,0.],[0.,0.])
+        self.container.is_container = True
+        self.balls      = [] # initalise, will hold all balls in Simulation object
+        self.num_balls  = 0
+        self.ball_mass  = 0.
+        self.total_time = 0.
+        self.total_mom  = 0.
     
     def generateBalls(self, n, m, r, v_bottom, v_top):
         '''
@@ -71,37 +72,36 @@ class Sim:
             Set spacing of Balls.
             Change distribution from which ball velocity components are chosen, e.g. uniform, normal, etc
         '''
-        spacing = 10*r # spacing between balls. Should reduce for large ball_radius or large ball number
+        spacing  = 10*r # spacing between balls. Should reduce for large ball_radius or large ball number
         cont_rad = self.container_rad
-        self.num_balls=n
-        self.ball_mass=m
-        self.total_mom=0. # reset these each time a new set of balls is generated
-        self.total_time=0.
+        self.num_balls  = n
+        self.ball_mass  = m
+        self.total_mom  = 0. # reset these each time a new set of balls is generated
+        self.total_time = 0.
         
-        ball_array=[] # to hold all Ball objects
-        ball_array.append(self.container)#container is first elt in ball_array - easy to check if collision involves container for pressure calculation
+        ball_array = [self.container] # to hold all Ball objects
                 
-        grid_list = np.arange(-cont_rad+0.1, cont_rad-0.1, spacing)
+        grid_list  = np.arange(-cont_rad+0.1, cont_rad-0.1, spacing)
         final_grid = []
         
         for i in grid_list:
             for j in grid_list:
-                mag = np.sqrt( (i)**2 + (j)**2 ) +r +0.01 #
+                mag = np.sqrt( (i)**2 + (j)**2 ) +r +0.01 
                 if mag<cont_rad:
                     final_grid.append([ float(i),float(j) ])
         if len(final_grid)<n:
             raise Exception('too many balls for container size')
             
         for k in range(0,n):
-            gen_vx = np.random.normal(v_bottom,v_top)
-            gen_vy = np.random.normal(v_bottom,v_top)
+            gen_vx  = np.random.normal(v_bottom,v_top)
+            gen_vy  = np.random.normal(v_bottom,v_top)
             gen_vel = [gen_vx, gen_vy]
             
             gen_pos = final_grid[k]
             
             ball_array.append(Ball(m,r,gen_pos,gen_vel))
         
-        self.balls=ball_array
+        self.balls = ball_array
         return ball_array
     
     
@@ -120,18 +120,15 @@ class Sim:
         lowest_time=1E20 # this is dodgy but need an initial value to check against
         for i in range(N): 
             for j in range(i+1,N): # to prevent unnecessary calculations - see lab book
-               t, is_coll = self.balls[i].timeToColl(self.balls[j]) # funcn will return 0. if coll won't happen but second output will be False                               
-               if is_coll:# make sure a collision has happened
-                   if t <= lowest_time: #check time against lowest
-                       lowest_time = t
-                       coll_1 = i
-                       coll_2 = j
+                t, is_coll = self.balls[i].timeToColl(self.balls[j])
+               
+                if is_coll and t <= lowest_time: # Collision has happened and is first collision
+                    lowest_time = t
+                    coll_1 = i
+                    coll_2 = j    
                    
-        return lowest_time, coll_1, coll_2         
+        return lowest_time, coll_1,coll_2         
  
-    
-    
-    
     def nextCollision(self):
         '''
         Moves all balls to next collsion.
@@ -143,27 +140,29 @@ class Sim:
         This calculation is done in module thermoCalc
         -------------------------------------------------------------------------------------------------------------------------------------------------------       
         '''        
-        N=len(self.balls)
-        t_to_coll, coll_1, coll_2 = self.lowestTime()        
-        self.total_time+=t_to_coll        
-        if coll_1 ==0:
+        N         = len(self.balls)
+        t_to_coll = self.lowestTime()[0]
+        coll_1    = self.lowestTime()[1]
+        coll_2    = self.lowestTime()[2]
+        
+        self.total_time += t_to_coll
+        
+        if coll_1 == 0:
             v_before = self.balls[coll_2]._vel.copy() # save the velocity of the ball before collision so that we can calculate the change in momentum
-            
-        for i in range(N): # move all the balls
-            self.balls[i].move(t_to_coll)        
+        
+        [ball.move(t_to_coll) for ball in self.balls]
         
         self.balls[coll_1].collide(self.balls[coll_2])
         
-        if coll_1==0:
+        if coll_1==0: # If involve container, use to calculate pressure 
             v_after = self.balls[coll_2]._vel.copy()
-            m=self.ball_mass
-            dv=v_after-v_before
-            dv_mag = np.sqrt( (dv[0])**2 + (dv[1])**2 )
-            dv_mom = m*dv_mag
+            m       = self.ball_mass
+            dv      = v_after - v_before
+            dv_mag  = np.sqrt( (dv[0])**2 + (dv[1])**2 )
+            dv_mom  = m*dv_mag
             self.total_mom += dv_mom
             
-        for i in range(N):
-            self.balls[i].move(1E-12)
+        [ball.move(1e-12) for ball in self.balls]
            
     def drawFrame(self):
         '''
@@ -173,11 +172,11 @@ class Sim:
         First ball in ball_array is coloured blue to help debugging 
         -------------------------------------------------------------------------------------------------------------------------------------------------------
         '''
-        N=len(self.balls)
-        f=pl.figure()
+        N = len(self.balls)
+        f = pl.figure()
         
         cont_rad = self.container_rad
-        ax = pl.axes(xlim =(-1*cont_rad,cont_rad), ylim =(-1*cont_rad,cont_rad)) 
+        ax = pl.axes(xlim = (-1*cont_rad,cont_rad), ylim =(-1*cont_rad,cont_rad)) 
         pl.gca().set_aspect('equal',adjustable='box')
         
         patch_container = pl.Circle([0.,0.], cont_rad, ec='b', fill=False, ls='solid')
@@ -204,23 +203,13 @@ class Sim:
         
         '''
 
-        if animate: 
-            self.drawFrame()
-            for frame in range(no_frames): # trange can be used here to check progress of simulation 
-                self.nextCollision()
-                pl.pause(0.0000001)
-                pl.show()
-                
-        else:
-            for frame in trange(no_frames): # trange can be used here to check progress of simulation 
-                self.nextCollision()    
-'''                
         if animate: #if True
             self.drawFrame()
-        for frame in range(no_frames): # trange can be used here to check progress of simulation 
+        for frame in trange(no_frames): # trange can be used here to check progress of simulation 
             self.nextCollision()
             if animate:
                 pl.pause(0.0001)
         if animate:
             pl.show()
- '''
+
+ 

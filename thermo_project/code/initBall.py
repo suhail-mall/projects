@@ -10,7 +10,6 @@ Contains methods to check time to next collision and update velocity due to coll
 Use help() on Ball class for docstring
 """ 
 import numpy as np
-# m=0.1;r=0.2;pos=[6.1,3.2];vel=[2.4,3.2]
 
 
 class Ball:
@@ -38,12 +37,8 @@ class Ball:
             is_container = False (can't initalise Ball as Container derived class)
         '''
         import numpy as np
-        assert isinstance(mass, (float))
-        assert isinstance(rad, (float))
-        assert isinstance(pos, list)
-        assert isinstance(vel, list)
-        self.mass = mass
-        self.rad = rad
+        self.mass = float(mass)
+        self.rad = float(rad)
         self.is_container = False # Have derived class Container - sets to True
         
         self.check(pos,vel)
@@ -70,6 +65,7 @@ class Ball:
         Returns position array of object
         '''
         return self._pos
+    
     def showVel(self):
         '''
         Returns velocity array of object
@@ -81,9 +77,8 @@ class Ball:
         Moves the ball to a time in the future determined by user
         Simple calculation because Ball object does not experience acceleration if not colliding
         '''
-        for i in range(0,2):
-            self._pos[i] +=self._vel[i]*dt
-        return self._pos
+        # self._pos = np.array([(pos + vel*dt) for pos,vel in zip(self._pos, self._vel)]) # Wanted to do with zip funcn 
+        self._pos = self._pos + self._vel*dt
     
  
     def timeToColl (self, other):
@@ -99,18 +94,18 @@ class Ball:
         r = self._pos - other._pos
         v = self._vel - other._vel
         #if one of the balls is a container, then the formula for time to collide is different 
-        if self.is_container== True:
+        if self.is_container:
             R = self.rad - other.rad
-        elif other.is_container == True:
+        elif other.is_container:
             R = other.rad - self.rad
         else:
             R = self.rad + other.rad   
-        r_dot_v = np.dot(r,v)
+        r_dot_v  = np.dot(r,v)
         r_mag_sq = np.dot(r,r)
         v_mag_sq = np.dot(v,v)
         
         is_coll = True # assume going to collide until shown not to
-        dt=0.
+        dt      = 0.
         #dt gives two solns --> see lab book for details of cases
         root = (r_dot_v)**2 -(v_mag_sq)*(r_mag_sq - R**2)
         if root>0: #collision time is real 
@@ -135,8 +130,8 @@ class Ball:
             elif dt_pos<0 and dt_neg<0:#both solns negative
                 is_coll =False
         else: # if soln isn't real (root<0) 
-            dt=0.
-            is_coll= False
+            dt = 0.
+            is_coll = False
         return dt, is_coll # still need to pass dt as a float
     
     
@@ -144,16 +139,8 @@ class Ball:
         '''
         Normalise a passed vector (will only be passed 1x2 arrays by code)
         '''
-        import numpy as np
-        mag_sq=0
-        r_hat = np.zeros(len(r))#this is messy :(
-        for i in range(0,len(r)):
-            mag_sq+=(r[i])**2 # determine magnitude_squared of r
-        if mag_sq!=0: #shouldn't really get this case unless we initialise the positions wrong
-            mag = mag_sq**0.5
-            for i in range(0,len(r)):
-                r_hat[i] = r[i]/mag #update each pos elt
-            return r_hat
+        r = np.array(r) # Ensure use of numpy array operations 
+        return r/np.sqrt(np.dot(r,r)) 
         
     def collide(self,other):  
         '''
@@ -167,25 +154,11 @@ class Ball:
         r2 = other._pos
         
         sum_mass = self.mass + other.mass
-        u12 = u1-u2
-        r12=r1-r2
+        u12 = u1 - u2
+        r12 = r1 - r2
         
-        self._vel -= (2*other.mass/sum_mass) * np.dot(u12,r12) * (r12) / (np.dot(r12,r12))       
-        other._vel -= (2*self.mass/sum_mass) * np.dot(u12,r12) * (-r12) / (np.dot(r12,r12))  
-        return self,other
+        self._vel  -= (2*other.mass/sum_mass) * np.dot(u12,r12) * (r12)  / (np.dot(r12,r12))       
+        other._vel -= (2*self.mass/sum_mass)  * np.dot(u12,r12) * (-r12) / (np.dot(r12,r12))  
+        return self, other
 
 
-class Container(Ball):
-    '''
-    Derived class of Ball
-    Initialises position and velocity arrays to 0 and mass to near-infinite.
-    is_container is True.
-    '''
-    def __init__(self, R):
-        import numpy as np
-        self.is_container=True
-        self.mass=1E12
-        self._pos = np.array([0.,0.])
-        self._vel = np.array([0.,0.])
-        assert isinstance(R,float)
-        self.rad=R
