@@ -10,24 +10,18 @@ Just build framework for tree stuff
 Add Bethe Lattice in some other file 
 """
 import numpy as np 
-
+    
+    
+#%%
 
 class Tree:
-    def __init__(self, p=0.5):
-        self.p = p 
+    def __init__(self, value, gen_p=0.5, vals=[0.5,0.5], val_p=[0.5,0.5]):
+        self.value = value
+        self.subtree = self.gen_next(gen_p, vals, val_p)
         
-        self.parent_node = np.random.choice([0,1], p=[1-self.p,self.p])
-        
-        
-        
-        return 
-    
-
-class node:
-    def __init__(self, value, left, right):
-        self.value = self.some_func(value) # In case not just write value directly 
-        self.left_node  = left #daughter nodes 
-        self.right_node = right 
-        
-    def some_func(self, value):
-        return value 
+    def gen_next(self, gen_p, vals, val_p):
+        if_gen = np.random.choice(a=[True,False], p=[gen_p, 1-gen_p], size=2) 
+        # Can replace this with a function to choose if_gen
+        subtree = [Tree(self.value) for _ in range(np.sum(if_gen))] 
+        # Operate on subtree here 
+        return subtree 
