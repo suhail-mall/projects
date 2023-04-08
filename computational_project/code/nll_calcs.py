@@ -13,15 +13,17 @@ import scipy.optimize as op
 
 
 #%%    READ DATA FROM ONLINE TEXT FILE (REQUIRES IMPERIAL LOGIN)
-# username = 'ssm2617'
-# file = url.request.urlopen('https://www.hep.ph.ic.ac.uk/~ms2609/CompPhys/neutrino_data/%s.txt'%username) # Request data 
+''' No longer have access to this - read from local file instead 
+username = 'ssm2617'
+file = url.request.urlopen('https://www.hep.ph.ic.ac.uk/~ms2609/CompPhys/neutrino_data/%s.txt'%username) # Request data 
 
-# data = [x for x in file] # function returns object, not list
-# N = int ((len(data) - 5)/2) # spaces and labels in text file 
+data = [x for x in file] # function returns object, not list
+N = int ((len(data) - 5)/2) # spaces and labels in text file 
 
-# k_arr = [float(str(k)[2:-3]) for k in data[2:N+2]] # Based on webpage format
-# lambda_arr = [float(str(r)[2:-3]) for r in data[N+5:]]
-    
+k_arr = [float(str(k)[2:-3]) for k in data[2:N+2]] # Based on webpage format
+lambda_arr = [float(str(r)[2:-3]) for r in data[N+5:]]
+'''
+
 #%%        READ DATA FROM TEXT FILE (PRE-DOWNLOADED AND WRITTEN OUT)    
 k_arr = np.loadtxt(r'./data/k_data.txt')
 lambda_arr = np.loadtxt(r'./data/rate_data.txt')
