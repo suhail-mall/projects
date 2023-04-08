@@ -11,12 +11,11 @@ Add Bethe Lattice in some other file
 """
 import numpy as np 
     
-    
 #%%
 
 class Tree:
     def __init__(self, value, gen_p=0.5, vals=[0.5,0.5], val_p=[0.5,0.5]):
-        self.value = value
+        self.value   = value
         self.subtree = self.gen_next(gen_p, vals, val_p)
         
     def gen_next(self, gen_p, vals, val_p):
