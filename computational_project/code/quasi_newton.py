@@ -60,7 +60,9 @@ def QN(f, x, alpha, eps):
     
     while not finished:
         # Calculate step based on current position 
-        step = np.diagonal(np.outer(alpha, np.matmul(G,der))) 
+        # step = np.diagonal(np.outer(alpha, np.matmul(G,der))) 
+        Gder = np.matmul(G,der)
+        step = np.array([a*Gd for (a,Gd) in zip(alpha, Gder)])
         
         x_new = x - step # Move to next point
         der_new = der_vector(f, x_new, eps) # Calculate der at new point 

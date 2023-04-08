@@ -19,7 +19,6 @@ def der_vector(f,x,eps):
     RETURNS 
     der : an n-dim derivative vector of f at x 
     '''
-    eps_mat = np.diag(eps) # To add eps[i] to the i'th param 
     n = len(x)
     eps_mat = np.diag(eps) # To add eps[i] to the i'th param 
     der = np.zeros_like(x)
@@ -56,7 +55,7 @@ def GradDesc(f, x, alpha, eps):
     
     while not finished: 
         der = der_vector(f, x, eps)# Calculate der vector 
-        step = np.diagonal(np.outer(alpha,der)) # step[i] = alpha[i]*der[i]
+        step = np.array([a*d for a,d in zip(alpha,der)])
         x_new = x - step # make step 
         ratio = 1 - f(*x_new)/f(*x) # check finishing condn 
         if 0 < ratio < 1e-8:

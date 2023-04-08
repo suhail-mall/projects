@@ -23,8 +23,8 @@ import scipy.optimize as op
 # lambda_arr = [float(str(r)[2:-3]) for r in data[N+5:]]
     
 #%%        READ DATA FROM TEXT FILE (PRE-DOWNLOADED AND WRITTEN OUT)    
-k_arr = np.loadtxt('data/k_data.txt')
-lambda_arr = np.loadtxt('data/rate_data.txt')
+k_arr = np.loadtxt(r'./data/k_data.txt')
+lambda_arr = np.loadtxt(r'./data/rate_data.txt')
 
 #%%        OSCILLATION PROBABILITY AND LIKELIHOOD 
 #          FOR 2D PARAM SPACE (theta_{23} AND m_squared_{23}) 
