@@ -36,7 +36,6 @@ class Ball:
             velocity array (shape 1x2, element type float)
             is_container = False (can't initalise Ball as Container derived class)
         '''
-        import numpy as np
         self.mass = float(mass)
         self.rad = float(rad)
         self.is_container = False # Have derived class Container - sets to True
