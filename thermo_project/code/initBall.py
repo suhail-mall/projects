@@ -89,7 +89,6 @@ class Ball:
         If time to collision is invalid, return 0. and False boolean
         Will only consider time if passed Boolean is True
         '''
-        import numpy as np
         r = self._pos - other._pos
         v = self._vel - other._vel
         #if one of the balls is a container, then the formula for time to collide is different 
