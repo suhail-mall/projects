@@ -1,0 +1,128 @@
+meta:
+  start time:
+    from: today
+    mean: 90
+    spread: 30
+
+
+tables:
+  - name: order
+    description: orders that a person has placed
+    columns:
+      - name: id
+        gen type : regex
+        gen value: '[a-z]{4}\d{4}'
+      - name: item id
+        gen type : regex
+        gen value: '[a-z]{4}\d{4}'
+      - name: customer id
+        gen type : regex
+        gen value: '[a-z]{4}\d{4}'
+      - name: order date
+      - name: shipped from
+        gen type : regex
+        gen value: '[a-z]{4}\d{4}'
+  - name: order_delivery
+    description: join table between order and delivery tables. Holds delivery event info about a specific order
+    columns:
+      - name: id
+        gen type: regex
+        gen value: '[a-z]{4}\d{4}'
+      - name: order id
+      - name: delivery id
+      - name: despatch date
+      - name: delay event
+        gen type: choice
+        gen value: [delivery delayed, customer not in to receive item, delivery rescheduled, item delivered to pick-up location, customer picked up item]
+        gen probability: [0.2,0.1,0.1, 0.1, 0.2] # This will not be used - the choice will most likely be done as part of choosing the next activity
+      - name: delay event time
+  - name: delivery
+    description: info about the company delivering the item
+    columns:
+      - name: id
+        gen type: regex
+        gen value: '[a-z]{4}\d{4}'
+      - name: company name
+        gen type: choice
+        gen value: [Royal Mail, Whistl, Evri, DPD, MyHermes]
+        gen probability: [1, 1, 1, 1, 1]
+      - name: contact number
+        gen type: regex
+        gen value: '07\d{9}'
+  - name: customer
+    description: info about a person that has placed an order
+    columns:
+      - name: id
+        gen type: regex
+        gen value: '[a-z]{4}\d{4}'
+      - name: email address
+        gen type: regex
+        gen value: '[a-z]{4,8}@gmail[.]com'
+      - name: phone number
+        gen type: regex
+        gen value: '07\d{9}'
+      - name: password
+        gen type: regex
+        gen value: '.{6-8}'
+  - name: item_warehouse
+    description: join table linking items and the warehouse that houses them. Contains events
+  - name: warehouse
+    description: info around a particular warehouse that houses items
+    columns:
+      - name: id
+      - name: region
+      - name: address
+  - name: item
+    description: items that can be purchased
+    columns:
+      - name: id
+      - name: item description
+        gen type: choice
+        gen value: [toy, gardening tool, bag, clothes]
+        gen probability: [1, 1, 2, 3]
+      - name: item price
+        gen type: correlate # Has to be in the same record as the column it correlates with
+        gen value: [5, 10, 100, 60]
+        correlate with column: item description
+
+foreign keys:
+  - child: order
+    parent: customer
+    child key: customer id
+    parent key: id
+    parent columns: [] # Which columns to populate in the parent table when a record is propagated
+  - child: order
+    parent: warehouse
+    child key: storage location
+    parent key: id
+
+activities:
+  - name: order placed
+    origins:
+      - table: order
+        columns:
+          - name: item id
+          - name: id
+          - name: shipped from
+            value: TEST
+      - table: delivery
+        columns:
+          - name: company name
+          - name: contact number
+    timestamp:
+      table: order
+      column: order date
+    time mean: 5
+    time spread: 1
+    multiple activities: True # Can you put multiple activities in one line in the final data
+
+followed by:
+  - name: START
+    followed activities:
+      - [order placed, 1]
+      - [order cancelled, 1]
+  - name: order placed
+    followed activities:
+      - [order cancelled, 0.1]
+      - [order packaged, 0.6]
+      - [order shipped from 3rd party vendor, 0.3]
